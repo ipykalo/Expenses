@@ -1,5 +1,4 @@
 import './App.css';
-import ExpenseItem from './components/expense-item/ExpenseItem';
 import Expenses from './components/expenses/Expenses';
 import Expense from './interfaces/Expense';
 
@@ -11,7 +10,12 @@ function App() {
         {id: '02fds', date: new Date("12/02/21"), title:"Car", price: 555.60}
     ];
 
-    return <Expenses expenses={expenses} />;
+    return (
+        <div>
+            <h2>Expenses</h2>
+            <Expenses items={expenses} />
+        </div>
+    );
 }
 
 export default App;

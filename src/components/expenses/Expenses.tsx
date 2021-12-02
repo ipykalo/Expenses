@@ -1,17 +1,15 @@
+import "./Expesnse.css";
 import Expense from "../../interfaces/Expense";
 import ExpenseItem from "../expense-item/ExpenseItem";
 import ExpensesProps from "./ExpensesProps";
+import Card from "../card/Card";
 
 function Expenses(props: ExpensesProps) {
-    const expenseItems = props.expenses.map((item: Expense) => (
+    const expenseItems = props.items.map((item: Expense) => (
         <ExpenseItem key={item.id} item={item} />
     ));
-    return(
-        <div>
-            <h2>Expenses</h2>
-            {expenseItems}
-        </div>
-    )
+
+    return <Card className="expenses">{expenseItems}</Card>;
 }
 
 export default Expenses;

@@ -1,5 +1,5 @@
-import { Props } from "react";
+import {HTMLProps, Props } from "react";
 
-export default interface ExpenseDateProps extends Props<object> {
+export default interface ExpenseDateProps extends HTMLProps<Props<object>> {
     date: Date;
 }
