@@ -1,10 +1,17 @@
 import './App.css';
 import ExpenseItem from './components/expense-item/ExpenseItem';
 import Expenses from './components/expenses/Expenses';
+import Expense from './interfaces/Expense';
 
 function App() {
+    const expenses: Expense[] = [
+        {id: '01sds', date: new Date("11/27/21"), title:"Car", price: 248.55},
+        {id: '03sws', date: new Date("11/29/21"), title:"Car", price: 155.35},
+        {id: '02qds', date: new Date("12/01/21"), title:"Car", price: 255.00},
+        {id: '02fds', date: new Date("12/02/21"), title:"Car", price: 555.60}
+    ];
 
-    return <Expenses />;
+    return <Expenses expenses={expenses} />;
 }
 
 export default App;
