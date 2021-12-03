@@ -2,7 +2,7 @@ import './App.css';
 import Expenses from './components/expenses/expenses-list/Expenses';
 import Expense from './interfaces/Expense';
 
-function App() {
+const App = () => {
     const expenses: Expense[] = [
         {id: '01sds', date: new Date("11/27/21"), title:"Car", price: 248.55},
         {id: '03sws', date: new Date("11/29/21"), title:"Car", price: 155.35},

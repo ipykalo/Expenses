@@ -3,7 +3,7 @@ import ExpenseItemProps from "./ExpenseItemProps";
 import ExpenseDate from "../expense-date/ExpenseDate";
 import Card from "../../UI/Card";
 
-function ExpenseItem(props: ExpenseItemProps) {
+const ExpenseItem = (props: ExpenseItemProps) => {
     return (
         <Card className="expense-item">
             <ExpenseDate date={props.item.date} />
