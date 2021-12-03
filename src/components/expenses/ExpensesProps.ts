@@ -1,6 +1,6 @@
-import { Props } from "react";
+import { HTMLProps } from "react";
 import Expense from "../../interfaces/Expense";
 
-export default interface ExpensesProps extends Props<object> {
+export default interface ExpensesProps extends HTMLProps<object> {
     items: Expense[];
 }
