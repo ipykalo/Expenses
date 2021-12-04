@@ -1,4 +1,5 @@
 import './App.css';
+import CreateExpense from './components/create-expenses/create-expense/CreateExpense';
 import Expenses from './components/expenses/expenses-list/Expenses';
 import Expense from './interfaces/Expense';
 
@@ -12,7 +13,7 @@ const App = () => {
 
     return (
         <div>
-            <h2>Expenses</h2>
+            <CreateExpense />
             <Expenses items={expenses} />
         </div>
     );
