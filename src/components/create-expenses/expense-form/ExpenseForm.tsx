@@ -1,24 +1,28 @@
 import "./ExpenseForm.css"
 import React from "react";
-import { FormEvent, HTMLProps } from "react";
+import { FormEvent } from "react";
 import FromState from "../../../interfaces/FormState";
 import { useFormState } from "../../../hooks/FormState";
+import ExpenseFormProps from "./ExpenseFormProps";
+import Expense from "../../../interfaces/Expense";
 
-const ExpenseForm = (props: HTMLProps<object>) => {
+const ExpenseForm = (props: ExpenseFormProps) => {
     const title: FromState = useFormState('');
     const amount: FromState = useFormState('');
     const date: FromState = useFormState('');
 
     const onFormSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        const form = {
+        const form: Expense = {
+            id: Math.random().toString(),
             title: title.value,
-            amount: amount.value,
-            date: date.value
+            price: +amount.value,
+            date: new Date(date.value)
         }
         title.reset();
         amount.reset();
         date.reset();
+        props.onAddExpense(form);
     }
 
     return (

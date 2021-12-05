@@ -1,4 +1,5 @@
 import "./Card.css";
+import React from "react";
 import {HTMLProps } from "react";
 
 const Card = (props: HTMLProps<object>) => {

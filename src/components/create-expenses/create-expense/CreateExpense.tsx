@@ -1,12 +1,12 @@
 import "./CreateExpense.css"
 import React from "react";
-import { HTMLProps } from "react";
 import ExpenseForm from "../expense-form/ExpenseForm";
+import CreateExpenseProps from "./CreateExpenseProps";
 
-const CreateExpense = (props: HTMLProps<object>) => {
+const CreateExpense = (props: CreateExpenseProps) => {
     return (
         <div className="new-expense">
-            <ExpenseForm />
+            <ExpenseForm onAddExpense={props.onAddExpense} />
         </div>
     );
 }
