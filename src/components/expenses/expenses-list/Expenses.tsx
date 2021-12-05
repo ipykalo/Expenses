@@ -1,4 +1,5 @@
 import "./Expesnse.css";
+import React from "react";
 import Expense from "../../../interfaces/Expense";
 import ExpenseItem from "../expense-item/ExpenseItem";
 import ExpensesProps from "./ExpensesProps";

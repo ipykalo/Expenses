@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import CreateExpense from './components/create-expenses/create-expense/CreateExpense';
 import Expenses from './components/expenses/expenses-list/Expenses';
 import Expense from './interfaces/Expense';

@@ -1,4 +1,5 @@
 import "./ExpenseDate.css";
+import React from "react";
 import ExpenseDateProps from "./ExpenseDateProps";
 
 const ExpenseDate = (props: ExpenseDateProps) => {

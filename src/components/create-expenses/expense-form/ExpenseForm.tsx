@@ -1,4 +1,5 @@
 import "./ExpenseForm.css"
+import React from "react";
 import { FormEvent, HTMLProps } from "react";
 import FromState from "../../../interfaces/FormState";
 import { useFormState } from "../../../hooks/FormState";

@@ -1,4 +1,5 @@
 import "./CreateExpense.css"
+import React from "react";
 import { HTMLProps } from "react";
 import ExpenseForm from "../expense-form/ExpenseForm";
 
