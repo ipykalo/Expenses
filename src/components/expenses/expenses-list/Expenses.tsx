@@ -11,9 +11,12 @@ const Expenses = (props: ExpensesProps) => {
     const [selectedYear, setYear] = useState(DEFAULT_YEAR);
     const onSelectFilter = (year: string): void => setYear(year);
 
-    const filteredExpenses = props.items.filter((item: Expense) => {
-        return item.date.getFullYear() === +selectedYear;
-    });
+    let filteredExpenses = props.items;
+    if (selectedYear !== 'all') {
+        filteredExpenses = props.items.filter((item: Expense) => {
+            return item.date.getFullYear() === +selectedYear;
+        });
+    }
 
     const expenseItems: JSX.Element[] = filteredExpenses.map((expense: Expense) => (
         <ExpenseItem key={expense.id} item={expense} />
