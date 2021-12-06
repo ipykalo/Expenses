@@ -26,7 +26,7 @@ const Expenses = (props: ExpensesProps) => {
         <div>
             <Card className="expenses">
                 <ExpensesFilter selectedYear={selectedYear} onSelectFilter={onSelectFilter} />
-                {expenseItems}
+                {expenseItems.length ? expenseItems : <p>No items found.</p>}
             </Card>
         </div>
     );
