@@ -5,10 +5,12 @@ import Expenses from './components/expenses/expenses-list/Expenses';
 import Expense from './interfaces/Expense';
 
 const App = () => {
-    const [expenses, setExpenses] = useState([]);
+    const [expenses, setExpenses] = useState<Expense[]>([]);
 
-    const onAddExpense = (data: Expense): void => {
-        setExpenses([...expenses, data as never]);
+    const onAddExpense = (newItem: Expense): void => {
+        setExpenses((prevState: Expense[]): Expense[] => {
+            return [newItem, ...prevState];
+        });
     }
 
     return (

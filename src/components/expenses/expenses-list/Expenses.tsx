@@ -7,23 +7,23 @@ import Card from "../../UI/Card";
 import ExpensesFilter from "../expenses-filter/ExpensesFilter";
 
 const Expenses = (props: ExpensesProps) => {
+    const DEFAULT_YEAR: string = '2021';
+    const [selectedYear, setYear] = useState(DEFAULT_YEAR);
+    const onSelectFilter = (year: string): void => setYear(year);
+
     const expenseItems: JSX.Element[] = props.items.map((expense: Expense) => (
         <ExpenseItem key={expense.id} item={expense} />
     ));
 
-    const [filteredExpenses, setFilteredExpenses] = useState(expenseItems);
-    const onSelectFilter = (filter: string): void => {
-        const filtered = expenseItems.filter((item: JSX.Element) => {
-            const date = new Date(item.props.item.date).getFullYear();
-            return date === +filter;
-        });
-        setFilteredExpenses(filtered);
-    }
+    const filteredExpenses = expenseItems.filter((item: JSX.Element) => {
+        const date = new Date(item.props.item.date).getFullYear();
+        return date === +selectedYear;
+    });
 
     return (
         <div>
             <Card className="expenses">
-                <ExpensesFilter onSelectFilter={onSelectFilter} />
+                <ExpensesFilter selectedYear={selectedYear} onSelectFilter={onSelectFilter} />
                 {filteredExpenses}
             </Card>
         </div>
