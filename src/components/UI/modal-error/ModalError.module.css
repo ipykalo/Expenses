@@ -46,4 +46,5 @@ footer button {
     background-color: #40005d;
     color: white;
     border-radius: 10px;
+    cursor: pointer;
 }
