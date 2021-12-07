@@ -23,7 +23,7 @@ const CreateExpense = (props: CreateExpenseProps) => {
     return (
         <div className="new-expense">
             {isVisibleForm && <ExpenseForm onAddExpense={onAddExpense} onCancel={onHideForm} />}
-            {!isVisibleForm && <button onClick={onShowForm}>Add Expense</button>}
+            {!isVisibleForm && <button className="expense" onClick={onShowForm}>Add Expense</button>}
         </div>
     );
 }

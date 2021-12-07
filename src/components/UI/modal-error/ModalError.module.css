@@ -1,0 +1,49 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+    background: rgb(116 111 111 / 75%);
+}
+
+.modal {
+    background-color: #e8d6fff2;
+    border-radius: 20px;
+    border: 1px solid black;
+    box-shadow: 5px 10px 15px #121212;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+header {
+    background-color: red;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px;
+    color: #fff;
+}
+
+header h3 {
+    padding: 0;
+    margin: 0;
+}
+
+footer {
+    padding: 10px;
+}
+
+footer button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #40005d;
+    background-color: #40005d;
+    color: white;
+    border-radius: 10px;
+}
