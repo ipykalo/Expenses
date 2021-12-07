@@ -4,13 +4,16 @@ import ChartBar from "../chart-bar/ChartBar";
 import ChartProps from "./ChartProps";
 
 const Chart = (props: ChartProps) => {
-    const chrtItems = props.chartData.map(i => <ChartBar key={i.label} label={i.label} value={i.value} maxValue={10} />);
+    const chartBarElements = props.chartData.map(i => (
+        <ChartBar
+            key={i.label}
+            label={i.label}
+            value={i.value}
+            maxValue={props.maxValue}
+        />
+    ));
 
-    return (
-        <div className="chart">
-            {chrtItems}
-        </div>
-    )
+    return (<div className="chart">{chartBarElements}</div>);
 }
 
 export default Chart;

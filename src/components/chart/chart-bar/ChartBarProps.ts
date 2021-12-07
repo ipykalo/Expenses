@@ -1,7 +1,8 @@
 import { HTMLProps } from "react";
+import ExpensesMonths from "../../../enums/ExpensesMonths";
 
 export default interface ChartProps extends HTMLProps<object> {
-    label: string;
-    value: string;
+    label: ExpensesMonths;
+    value: number;
     maxValue: number;
 }
