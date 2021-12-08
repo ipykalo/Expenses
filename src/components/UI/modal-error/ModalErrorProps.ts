@@ -1,7 +1,12 @@
 import { HTMLProps } from "react";
 
-export default interface ModalErrorPrpps extends HTMLProps<object> {
+export interface ModalErrorObj {
     title: string;
     message: string;
+}
+
+export interface ModalErrorPrpps extends HTMLProps<object> {
+    errors: ModalErrorObj[];
+    show: boolean;
     onClose: () => void;
 }

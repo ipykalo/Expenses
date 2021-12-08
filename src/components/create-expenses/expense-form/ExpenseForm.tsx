@@ -6,25 +6,23 @@ import { useFormState } from "../../../hooks/FormState";
 import ExpenseFormProps from "./ExpenseFormProps";
 import Expense from "../../../interfaces/Expense";
 import ModalError from "../../UI/modal-error/ModalError";
-import ModalErrorObj from "../../UI/modal-error/ModalErrorObj";
+import { ModalErrorObj } from "../../UI/modal-error/ModalErrorProps";
 
 const ExpenseForm = (props: ExpenseFormProps) => {
     const title: FromState = useFormState('');
     const amount: FromState = useFormState('');
     const date: FromState = useFormState('');
-    const [error, setError] = useState<ModalErrorObj | null>(null);
+
+    const [errors, setError] = useState<ModalErrorObj[]>([]);
+    const [showModal, setModalVisibility] = useState(false);
 
     const onFormSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
+        const isValid: boolean = validateFilds();
 
-        if (!title.value || !amount.value || !date.value) {
-            setError({
-                title: 'Error',
-                message: 'Enter all required fields.'
-            });
+        if (!isValid) {
             return;
         }
-
         const form: Expense = {
             id: Math.random().toString(),
             title: title.value,
@@ -37,27 +35,52 @@ const ExpenseForm = (props: ExpenseFormProps) => {
         props.onAddExpense(form);
     }
 
-    const onCloseErrorModal = () => {
-        setError(null);
+    const onCloseErrorModal = (): void => {
+        setModalVisibility(false);
+    }
+
+    const validateFilds = (): boolean => {
+        let modalErrors: ModalErrorObj[] = [];
+
+        if (!title.value || !amount.value || !date.value) {
+            modalErrors.push({
+                title: 'Error',
+                message: 'Enter all required fields.'
+            });
+        }
+
+        if (title.value.length < 5) {
+            modalErrors.push({
+                title: 'Error',
+                message: 'Title length should not be less than 5 chars.'
+            });
+        }
+
+        if (modalErrors.length) {
+            setError(modalErrors);
+            setModalVisibility(true);
+        }
+        return modalErrors.length === 0;
     }
 
     return (
         <div>
-            <form onSubmit={onFormSubmit} noValidate>
-                <div className="new-expense__controls">
+            <form onSubmit={onFormSubmit}>
+                <div className="new-expense__controls form-control">
                     <div className="new-expense__control">
                         <label htmlFor="title">Title</label>
-                        <input required type="text" id="title" placeholder="Enter Title" value={title.value} onChange={title.onChange} />
+                        <input type="text" id="title" placeholder="Enter Title" value={title.value}
+                            onChange={title.onChange} className={errors.length && (!title.value || title.value.length < 5) ? 'invalid' : ''} />
                     </div>
                     <div className="new-expense__control">
                         <label htmlFor="amount">Amount</label>
-                        <input required type="number" id="amount" min="0.01" step="0.01" placeholder="Enter amount"
-                            value={amount.value} onChange={amount.onChange} />
+                        <input type="number" id="amount" min="0.01" step="0.01" placeholder="Enter amount"
+                            value={amount.value} onChange={amount.onChange} className={errors.length && !amount.value ? 'invalid' : ''} />
                     </div>
                     <div className="new-expense__control">
                         <label htmlFor="date">Date</label>
-                        <input required type="date" id="date" min="2021-01-01" max="2022-12-31"
-                            value={date.value} onChange={date.onChange} />
+                        <input type="date" id="date" min="2021-01-01" max="2022-12-31" value={date.value}
+                            className={errors.length && !date.value ? 'invalid' : ''} onChange={date.onChange} />
                     </div>
                 </div>
                 <div className="new-expense__actions">
@@ -65,7 +88,11 @@ const ExpenseForm = (props: ExpenseFormProps) => {
                     <button className="expense" type="submit">Submit</button>
                 </div>
             </form>
-            {error && <ModalError title={error.title} message={error.message} onClose={onCloseErrorModal} />}
+            <ModalError
+                show={showModal}
+                errors={errors}
+                onClose={onCloseErrorModal}
+            />
         </div>
     );
 }
