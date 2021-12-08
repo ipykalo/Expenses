@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import CreateExpense from './components/create-expenses/create-expense/CreateExpense';
 import Expenses from './components/expenses/expenses-list/Expenses';
 import Expense from './interfaces/Expense';
@@ -14,12 +14,11 @@ const App = () => {
     }
 
     return (
-        <div>
+        <Fragment>
             <CreateExpense onAddExpense={onAddExpense} />
             <Expenses items={expenses} />
-        </div>
+        </Fragment>
     );
 }
 
 export default App;
- 

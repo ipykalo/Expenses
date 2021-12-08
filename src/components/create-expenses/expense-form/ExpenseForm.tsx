@@ -1,5 +1,5 @@
 import "./ExpenseForm.css"
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { FormEvent } from "react";
 import FromState from "../../../interfaces/FormState";
 import { useFormState } from "../../../hooks/FormState";
@@ -64,7 +64,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
     }
 
     return (
-        <div>
+        <Fragment>
             <form onSubmit={onFormSubmit}>
                 <div className="new-expense__controls form-control">
                     <div className="new-expense__control">
@@ -93,7 +93,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
                 errors={errors}
                 onClose={onCloseErrorModal}
             />
-        </div>
+        </Fragment>
     );
 }
 

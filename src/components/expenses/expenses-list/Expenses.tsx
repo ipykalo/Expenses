@@ -24,13 +24,11 @@ const Expenses = (props: ExpensesProps) => {
     ));
 
     return (
-        <div>
-            <Card className="expenses">
-                <ExpensesFilter selectedYear={selectedYear} onSelectFilter={onSelectFilter} />
-                <ExpensesChart expenses={filteredExpenses} />
-                {expenseItems.length ? expenseItems : <p>No items found.</p>}
-            </Card>
-        </div>
+        <Card className="expenses">
+            <ExpensesFilter selectedYear={selectedYear} onSelectFilter={onSelectFilter} />
+            <ExpensesChart expenses={filteredExpenses} />
+            {expenseItems.length ? expenseItems : <p>No items found.</p>}
+        </Card>
     );
 }
 

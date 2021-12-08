@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styles from "./ModalError.module.css";
 import { ModalErrorPrpps } from "./ModalErrorProps";
 
@@ -8,7 +8,7 @@ const ModalError = (props: ModalErrorPrpps) => {
     }
 
     return (
-        <div>
+        <Fragment>
             <div className={styles.backdrop} onClick={props.onClose}></div>
             <div className={styles.modal}>
                 <header>
@@ -21,7 +21,7 @@ const ModalError = (props: ModalErrorPrpps) => {
                     <button onClick={props.onClose}>Ok</button>
                 </footer>
             </div>
-        </div>
+        </Fragment>
     )
 }
 
