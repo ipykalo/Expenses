@@ -14,10 +14,17 @@ const ModalError = (props: ModalErrorPrpps) => {
                 <div className={styles.backdrop} onClick={props.onClose}>
                     <div className={styles.modal}>
                         <header>
-                            <h3>{props.errors[0].title}</h3>
+                            <h3>{props.title}</h3>
                         </header>
                         <main>
-                            {props.errors.map(i => <p key={i.message}>{i.message}</p>)}
+                            {props.errors.map(i => (
+                                <div key={i.title + ':' + i.message}>
+                                    <p>
+                                        <span>{i.title}: </span>
+                                        {i.message}
+                                    </p>
+                                </div>
+                            ))}
                         </main>
                         <footer>
                             <button onClick={props.onClose}>Ok</button>

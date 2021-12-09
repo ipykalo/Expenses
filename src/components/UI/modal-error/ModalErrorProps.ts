@@ -6,6 +6,7 @@ export interface ModalErrorObj {
 }
 
 export interface ModalErrorPrpps extends HTMLProps<object> {
+    title: string;
     errors: ModalErrorObj[];
     show: boolean;
     onClose: () => void;

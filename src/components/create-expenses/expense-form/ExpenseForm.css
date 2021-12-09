@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 1rem;
-    text-align: left;
+    text-align: justify;
 }
 
 .new-expense__control label {
@@ -28,4 +28,8 @@
 .form-control .invalid {
     border-color: red;
     background-color: #ffa5ce;
+}
+
+.error {
+    color: #b72020;
 }
