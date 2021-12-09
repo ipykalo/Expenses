@@ -30,28 +30,36 @@ const ExpenseForm = (props: ExpenseFormProps) => {
     };
 
     const reducer: FormReducer = (state: FormState, action: FormAction): FormState => {
-        if (action.type === 'blur') {
-            return {
-                ...state,
-                [action.name]: {
-                    errors: getErrors(action),
-                    value: action.value,
-                    isValid: state[action.name].isValid,
-                    touched: true
-                }
-            };
-        }
+        const errors = getErrors(action);
         let isValid: boolean = isRequiredValid(action) && isMinLengthValid(action) && isMaxLengthValid(action) && isMinValid(action) && isMaxValid(action);
 
         return {
             ...state,
             [action.name]: {
-                errors: getErrors(action),
+                errors,
                 value: action.value,
                 isValid: isValid,
-                touched: state[action.name].touched
+                touched: action.type === 'blur' ? true : state[action.name].touched
             }
         };
+    }
+
+    const getErrors = (action: FormAction): string[] => {
+        const errors: string[] = [];
+        const errorsMsg = {
+            [Validator.Required]: `The ${action.name} field is required`,
+            [Validator.MinLength]: `The length of ${action.name} field should not be less than ${action.validator.minLength} chars`,
+            [Validator.MaxLength]: `The length of ${action.name} field should not be more than ${action.validator.maxLength} chars`,
+            [Validator.Min]: `The value of ${action.name} field should not be less ${action.validator.min}`,
+            [Validator.Max]: `The value of ${action.name} field should not more ${action.validator.max}`,
+        }
+        !isRequiredValid(action) && errors.push(errorsMsg.required);
+        !isMinLengthValid(action) && errors.push(errorsMsg.minLength);
+        !isMaxLengthValid(action) && errors.push(errorsMsg.maxLength);
+        !isMinValid(action) && errors.push(errorsMsg.min);
+        !isMaxValid(action) && errors.push(errorsMsg.max);
+
+        return errors;
     }
 
     const isRequiredValid = (action: FormAction): boolean => action.validator.hasOwnProperty('required') ? !!action.value : true;
@@ -74,24 +82,6 @@ const ExpenseForm = (props: ExpenseFormProps) => {
     const isMaxValid = (action: FormAction): boolean => {
         const max = action.validator?.max || '';
         return action.validator.hasOwnProperty('min') && max ? action.value <= max : true;
-    }
-
-    const getErrors = (action: FormAction): string[] => {
-        const errors: string[] = [];
-        const errorsMsg = {
-            [Validator.Required]: `The ${action.name} field is required`,
-            [Validator.MinLength]: `The length of ${action.name} field should not be less than ${action.validator.minLength} chars`,
-            [Validator.MaxLength]: `The length of ${action.name} field should not be more than ${action.validator.maxLength} chars`,
-            [Validator.Min]: `The value of ${action.name} field should not be less ${action.validator.min}`,
-            [Validator.Max]: `The value of ${action.name} field should not more ${action.validator.max}`,
-        }
-        !isRequiredValid(action) && errors.push(errorsMsg.required);
-        !isMinLengthValid(action) && errors.push(errorsMsg.minLength);
-        !isMaxLengthValid(action) && errors.push(errorsMsg.maxLength);
-        !isMinValid(action) && errors.push(errorsMsg.min);
-        !isMaxValid(action) && errors.push(errorsMsg.max);
-
-        return errors;
     }
 
     const [formState, dispatchFn] = useReducer(reducer, formModel);
@@ -167,7 +157,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
 
     return (
         <Fragment>
-            <form onSubmit={onFormSubmit} noValidate>
+            <form onSubmit={onFormSubmit} >
                 <div className="new-expense__controls form-control">
                     <div className="new-expense__control">
                         <label htmlFor="title">Title</label>
