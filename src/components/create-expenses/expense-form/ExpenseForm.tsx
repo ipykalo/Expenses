@@ -8,27 +8,6 @@ import { ModalErrorObj } from "../../UI/modal-error/ModalErrorProps";
 import Validator from "../../../enums/Validators";
 
 const ExpenseForm = (props: ExpenseFormProps) => {
-    const formModel: FormState = {
-        title: {
-            value: '',
-            isValid: false,
-            touched: false,
-            errors: []
-        },
-        amount: {
-            value: '',
-            isValid: false,
-            touched: false,
-            errors: []
-        },
-        date: {
-            value: '',
-            isValid: false,
-            touched: false,
-            errors: []
-        }
-    };
-
     const reducer: FormReducer = (state: FormState, action: FormAction): FormState => {
         const errors = getErrors(action);
         let isValid: boolean = isRequiredValid(action) && isMinLengthValid(action) && isMaxLengthValid(action) && isMinValid(action) && isMaxValid(action);
@@ -84,7 +63,26 @@ const ExpenseForm = (props: ExpenseFormProps) => {
         return action.validator.hasOwnProperty('min') && max ? action.value <= max : true;
     }
 
-    const [formState, dispatchFn] = useReducer(reducer, formModel);
+    const [formState, dispatchFn] = useReducer(reducer, {
+        title: {
+            value: '',
+            isValid: false,
+            touched: false,
+            errors: []
+        },
+        amount: {
+            value: '',
+            isValid: false,
+            touched: false,
+            errors: []
+        },
+        date: {
+            value: '',
+            isValid: false,
+            touched: false,
+            errors: []
+        }
+    });
 
     const onInputHandler = (event: ChangeEvent<HTMLInputElement>): void => {
         const el: HTMLInputElement = event.target;
