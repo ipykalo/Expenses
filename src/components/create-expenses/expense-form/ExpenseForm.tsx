@@ -10,7 +10,8 @@ import Validator from "../../../enums/Validators";
 const ExpenseForm = (props: ExpenseFormProps) => {
     const reducer: FormReducer = (state: FormState, action: FormAction): FormState => {
         const errors = getErrors(action);
-        let isValid: boolean = isRequiredValid(action) && isMinLengthValid(action) && isMaxLengthValid(action) && isMinValid(action) && isMaxValid(action);
+        let isValid: boolean = isRequiredValid(action) && isMinLengthValid(action) &&
+            isMaxLengthValid(action) && isMinValid(action) && isMaxValid(action);
 
         return {
             ...state,
