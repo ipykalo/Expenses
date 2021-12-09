@@ -157,7 +157,7 @@ const ExpenseForm = (props: ExpenseFormProps) => {
 
     return (
         <Fragment>
-            <form onSubmit={onFormSubmit} >
+            <form onSubmit={onFormSubmit} noValidate>
                 <div className="new-expense__controls form-control">
                     <div className="new-expense__control">
                         <label htmlFor="title">Title</label>
