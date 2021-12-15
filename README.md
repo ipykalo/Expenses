@@ -1,3 +1,21 @@
+# To run the App there are 2 options available:
+1) Use Docker
+2) Use React CLI
+
+# To start the App by Docker follow the instruction below:
+1) Install Docker: https://docs.docker.com/get-docker/
+2) Run command: docker-compose up
+
+# To build the app and run it in production mode perform the next steps:
+1) Run command: docker build .
+    When it is done you will see image id like below:
+    => => writing image sha256:5d5bbeb4645ab781fabbcde46c271603fd4519dfebef92373c3d3f163e889c2a 
+2) Copy the image id: sha256:5d5bbeb4645ab781fabbcde46c271603fd4519dfebef92373c3d3f163e889c2a
+3) Run command: docker run -p 8080:80 sha256:5d5bbeb4645ab781fabbcde46c271603fd4519dfebef92373c3d3f163e889c2a
+4) Open browser with the url: http://localhost:8080/
+
+# To start the App by React CLI follow the instruction below
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
